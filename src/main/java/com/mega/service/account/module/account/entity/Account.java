@@ -1,9 +1,12 @@
 package com.mega.service.account.module.account.entity;
 
+import com.mega.service.account.module.transactions.entity.Transaction;
 import com.mega.service.account.module.users.entity.User;
 import com.mega.service.account.utils.entity.Auditing;
 import jakarta.persistence.*;
 import lombok.Data;
+
+import java.util.List;
 
 @Entity
 @Table(name = "accounts")
@@ -22,5 +25,9 @@ public class Account extends Auditing {
     @OneToOne
     @JoinColumn(name = "user_id")
     private User user;
+
+    @OneToMany(mappedBy = "account")
+    private List<Transaction> transactions;
+
 
 }
