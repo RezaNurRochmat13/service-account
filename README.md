@@ -30,6 +30,8 @@ Service Account Backend
 - Spring Data JPA
 - Postgres Database
 - Lombok
+- Model Mapper
+- Spring Security
 ```
 
 ## Architecture
