@@ -1,5 +1,6 @@
 package com.mega.service.account.module.users.entity;
 
+import com.mega.service.account.module.account.entity.Account;
 import com.mega.service.account.utils.entity.Auditing;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -29,4 +30,7 @@ public class User extends Auditing {
 
     @Column(name = "phone_number")
     private String phoneNumber;
+
+    @OneToOne(mappedBy = "user")
+    private Account account;
 }
