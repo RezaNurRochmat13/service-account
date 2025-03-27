@@ -22,6 +22,6 @@ public abstract class Auditing {
     @Column(name = "updated_at", nullable = false)
     private LocalDateTime updatedAt;
 
-    @Column(name = "deleted_at", insertable = false, nullable = false)
+    @Column(name = "deleted_at", insertable = false)
     private LocalDateTime deletedAt;
 }

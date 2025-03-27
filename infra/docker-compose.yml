@@ -1,11 +1,11 @@
 services:
   postgres:
     image: postgres:15
-    container_name: mega-postgres
+    container_name: mampu-postgres
     environment:
-      POSTGRES_USER: mega
-      POSTGRES_PASSWORD: mega
-      POSTGRES_DB: mega-db
+      POSTGRES_USER: mampu
+      POSTGRES_PASSWORD: mampu
+      POSTGRES_DB: mampu-db
     ports:
       - "5432:5432"
     volumes:
@@ -13,7 +13,7 @@ services:
 
   minio:
     image: minio/minio:latest
-    container_name: mega-minio
+    container_name: mampu-minio
     environment:
       MINIO_ROOT_USER: admin
       MINIO_ROOT_PASSWORD: adminpassword
