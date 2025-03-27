@@ -8,6 +8,7 @@ import com.mega.service.account.module.transactions.dto.ListTransactionDto;
 import com.mega.service.account.module.transactions.entity.Transaction;
 import com.mega.service.account.module.transactions.repository.TransactionRepository;
 import com.mega.service.account.utils.exception.InsufficientBalance;
+import com.mega.service.account.utils.exception.InvalidTransactionType;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -36,6 +37,11 @@ public class TransactionServiceImpl implements TransactionService {
         Account account = accountRepository.findById(createTransactionDto.getAccountId())
                 .orElseThrow(() -> new RuntimeException("Account not found with id: " + createTransactionDto.getAccountId()));
         Transaction transaction = new Transaction();
+
+        // Ensure only 'WITHDRAW' transactions are processed
+        if (!"WITHDRAW".equals(createTransactionDto.getTransactionType())) {
+            throw new InvalidTransactionType("Invalid transaction type: " + createTransactionDto.getTransactionType());
+        }
 
         if (account.getBalance() < createTransactionDto.getAmount()) {
             transaction.setTransactionStatus("FAILED");
